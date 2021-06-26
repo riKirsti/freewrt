@@ -26,7 +26,6 @@ jobs:
         wget $SDK_URL
         tar xf $(basename $SDK_URL) -C ~/
         mv ~/$SDK_HOME ~/sdk
-        cp key-build ~/sdk/
     - name: Download Packages
       run: |
         cd ~/sdk
