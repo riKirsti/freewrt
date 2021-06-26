@@ -26,6 +26,7 @@ jobs:
         wget $SDK_URL
         tar xf $(basename $SDK_URL) -C ~/
         mv ~/$SDK_HOME ~/sdk
+        ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c "Local build key"
     - name: Download Packages
       run: |
         cd ~/sdk
