@@ -30,9 +30,13 @@ jobs:
       run: |
         cd ~/sdk
         # Shadowsocks
-        git clone -b master https://github.com/honwen/luci-app-shadowsocks-rust package/luci-app-shadowsocks
-        git clone -b master https://github.com/honwen/openwrt-shadowsocks-rust package/shadowsocks-libev
+        git clone -b master https://github.com/honwen/luci-app-shadowsocks-rust.git package/luci-app-shadowsocks-rust
+        git clone -b master https://github.com/honwen/openwrt-shadowsocks-rust.git package/shadowsocks-rust
         git clone -b master https://github.com/aa65535/openwrt-simple-obfs package/simple-obfs
+        git clone -b master https://github.com/aa65535/openwrt-dist-luci package/openwrt-dist-luci
+        pushd package/openwrt-dist-luci/tools/po2lmo ; make && sudo make install ; popd
+        ./scripts/feeds update -a
+        ./scripts/feeds install golang c-ares libev libopenssl libsodium mbedtls pcre libncursesw6
     - name: Compile
       run: |
         cd ~/sdk
