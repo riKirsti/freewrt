@@ -33,9 +33,8 @@ jobs:
         # Shadowsocks
         git clone -b master https://github.com/honwen/luci-app-shadowsocks-rust.git package/luci-app-shadowsocks-rust
         git clone -b master https://github.com/honwen/openwrt-shadowsocks-rust.git package/shadowsocks-rust
-        git clone -b master https://github.com/aa65535/openwrt-simple-obfs package/simple-obfs
-        git clone -b master https://github.com/aa65535/openwrt-dist-luci package/openwrt-dist-luci
-        pushd package/openwrt-dist-luci/tools/po2lmo ; make && sudo make install ; popd
+        git clone -b master https://github.com/aa65535/openwrt-simple-obfs.git package/simple-obfs
+        pushd package/luci-app-shadowsocks-rust/tools/po2lmo ; make && sudo make install ; popd
         ./scripts/feeds update -a
         ./scripts/feeds install golang c-ares libev libopenssl libsodium mbedtls pcre libncursesw6
         ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c "Local build key"
@@ -58,4 +57,4 @@ jobs:
         git config user.email "bot@github.com"
         git add .
         git commit -m "$TAG$(TZ='Asia/Shanghai' date +@%Y%m%d)"
-        git push --force --quiet "https://$GITHUB_TOKEN@github.com/riKirsti/freewrt.git" HEAD:$TAG
+        git push --force --quiet "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/riKirsti/freewrt.git" HEAD:$TAG
