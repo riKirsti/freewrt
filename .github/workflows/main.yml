@@ -18,7 +18,10 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Env for Openwrt SDK
-      run: sudo apt install -y libev-dev libc-ares-dev libudns-dev libncurses-dev
+      run: |
+        sudo apt update
+        sudo apt install -y  build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion git-core gcc-multilib libelf-dev autoconf automake libtool
+        sudo apt install -y libev-dev libc-ares-dev libudns-dev libncurses-dev
     - name: Download Openwrt SDK
       env:
         SDK_URL: ${{ matrix.SDK_URL }}
@@ -30,6 +33,9 @@ jobs:
     - name: Download Packages
       run: |
         cd ~/sdk
+        # Trojan-go
+        git clone -b master https://github.com/frainzy1477/trojan-go-for-openwrt.git package/trojan-go
+        git clone -b master https://github.com/frainzy1477/luci-app-trojan.git package/luci-app-trojan
         # Shadowsocks
         git clone -b master https://github.com/honwen/luci-app-shadowsocks-rust.git package/luci-app-shadowsocks-rust
         git clone -b master https://github.com/honwen/openwrt-shadowsocks-rust.git package/shadowsocks-rust
@@ -55,6 +61,6 @@ jobs:
         git init
         git config user.name "bot"
         git config user.email "bot@github.com"
-        git add .
+        git add *.ipk
         git commit -m "$TAG$(TZ='Asia/Shanghai' date +@%Y%m%d)"
         git push --force --quiet "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/riKirsti/freewrt.git" HEAD:$TAG
