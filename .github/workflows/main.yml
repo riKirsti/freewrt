@@ -9,7 +9,7 @@ env:
 jobs:
   buildpkg:
     name: Build Openwrt Package
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -19,9 +19,12 @@ jobs:
     - uses: actions/checkout@master
     - name: Env for Openwrt SDK
       run: |
-        sudo apt update
-        sudo apt install -y  build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion git-core gcc-multilib libelf-dev autoconf automake libtool
-        sudo apt install -y libev-dev libc-ares-dev libudns-dev libncurses-dev
+        sudo apt-get clean
+        sudo apt-get remove
+        sudo apt-get update
+        sudo apt-get upgrade
+        sudo apt-get install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion git-core gcc-multilib libelf-dev autoconf automake libtool
+        sudo apt-get install -y libev-dev libc-ares-dev libudns-dev libncurses-dev
     - name: Download Openwrt SDK
       env:
         SDK_URL: ${{ matrix.SDK_URL }}
