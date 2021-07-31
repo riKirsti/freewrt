@@ -39,6 +39,8 @@ jobs:
         # Trojan-go
         git clone -b main https://github.com/riKirsti/trojan-go-for-openwrt.git package/trojan-go
         git clone -b master https://github.com/frainzy1477/luci-app-trojan.git package/luci-app-trojan
+        # Clash
+        git clone -b master https://github.com/vernesong/OpenClash package/openclash
         # Shadowsocks
         git clone -b master https://github.com/honwen/luci-app-shadowsocks-rust.git package/luci-app-shadowsocks-rust
         git clone -b master https://github.com/honwen/openwrt-shadowsocks-rust.git package/shadowsocks-rust
