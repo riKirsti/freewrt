@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         SDK_URL:
-        - https://downloads.openwrt.org/releases/21.02.0-rc3/targets/ramips/mt7621/openwrt-sdk-21.02.0-rc3-ramips-mt7621_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        - https://downloads.openwrt.org/releases/21.02.0-rc4/targets/ramips/mt7621/openwrt-sdk-21.02.0-rc4-ramips-mt7621_gcc-8.4.0_musl.Linux-x86_64.tar.xz
     steps:
     - uses: actions/checkout@master
     - name: Env for Openwrt SDK
@@ -22,7 +22,9 @@ jobs:
         sudo apt-get clean
         sudo apt-get remove
         sudo apt-get update
-        sudo apt-get upgrade
+        sudo apt-get upgrade -y
+        sudo apt-get update
+        sudo apt-get dist-upgrade -y
         sudo apt-get install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion git-core gcc-multilib libelf-dev autoconf automake libtool
         sudo apt-get install -y libev-dev libc-ares-dev libudns-dev libncurses-dev
     - name: Download Openwrt SDK
