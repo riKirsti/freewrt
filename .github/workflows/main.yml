@@ -56,7 +56,7 @@ jobs:
         ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c "Local build key"
     - name: Compile
       run: |
-        cd ~/sdk/package
+        cd ~/sdk
         make defconfig
         # Edit config
         make V=s
