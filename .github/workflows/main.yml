@@ -48,7 +48,7 @@ jobs:
         git clone -b master https://github.com/vernesong/OpenClash package/openclash
         # Shadowsocks
         git clone -b master https://github.com/honwen/luci-app-shadowsocks-rust.git package/luci-app-shadowsocks-rust
-        git clone -b master https://github.com/riKirsti/openwrt-shadowsocks-rust.git package/shadowsocks-rust
+        git clone -b master https://github.com/honwen/openwrt-shadowsocks-rust.git package/shadowsocks-rust
         git clone -b master https://github.com/aa65535/openwrt-simple-obfs.git package/simple-obfs
         pushd package/luci-app-shadowsocks-rust/tools/po2lmo ; make && sudo make install ; popd
         ./scripts/feeds update -a
