@@ -55,10 +55,10 @@ jobs:
     - name: Compile
       run: |
         cd ~/sdk
+        make defconfig
         make menuconfig
         deselect:
         "Select all kernel module packages by default"
-        make defconfig
         # Edit config
         make V=s
     - name: Upload
