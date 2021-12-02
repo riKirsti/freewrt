@@ -50,14 +50,14 @@ jobs:
         git clone -b master https://github.com/aa65535/openwrt-simple-obfs.git package/simple-obfs
         pushd package/luci-app-shadowsocks-rust/tools/po2lmo ; make && sudo make install ; popd
         ./scripts/feeds update -a
-        ./scripts/feeds install golang c-ares libev libopenssl libsodium mbedtls pcre libncursesw6
+        ./scripts/feeds install golang
         ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c "Local build key"
     - name: Compile
       run: |
-        cd ~/sdk/package
+        cd ~/sdk
         make defconfig
         # Edit config
-        make V=s
+        make package/*/{clean,compile} V=s
     - name: Upload
       env:
         SDK_URL: ${{ matrix.SDK_URL }}
