@@ -50,7 +50,7 @@ jobs:
         git clone -b master https://github.com/aa65535/openwrt-simple-obfs.git package/simple-obfs
         pushd package/luci-app-shadowsocks-rust/tools/po2lmo ; make && sudo make install ; popd
         ./scripts/feeds update -a
-        ./scripts/feeds install golang
+        ./scripts/feeds install golang libev
         ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c "Local build key"
     - name: Compile
       run: |
