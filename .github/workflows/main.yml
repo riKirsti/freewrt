@@ -57,7 +57,6 @@ jobs:
         cd ~/sdk
         make menuconfig
         deselect:
-        "Select all target specific packages by default"
         "Select all kernel module packages by default"
         # Edit config
         make V=s
