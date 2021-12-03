@@ -26,7 +26,7 @@ jobs:
         sudo apt-get update
         sudo apt-get dist-upgrade -y
         sudo apt-get install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion git-core gcc-multilib libelf-dev autoconf automake libtool
-        sudo apt-get install -y libev-dev libc-ares-dev libudns-dev libncurses-dev
+        sudo apt-get install -y libev-dev libc-ares-dev libudns-dev libncurses-dev upx
     - name: Download Openwrt SDK
       env:
         SDK_URL: ${{ matrix.SDK_URL }}
