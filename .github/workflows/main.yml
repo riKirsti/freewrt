@@ -38,6 +38,8 @@ jobs:
     - name: Download Packages
       run: |
         cd ~/sdk
+        # Smartdns
+        git clone --depth 1 -b master https://github.com/riKirsti/openwrt-smartdns.git package/smartdns
         # XRAY
         git clone --depth 1 -b master https://github.com/riKirsti/openwrt-xray.git package/xray-core
         git clone --depth 1 -b master https://github.com/honwen/luci-app-xray.git package/luci-app-xray
@@ -50,7 +52,7 @@ jobs:
         git clone --depth 1 -b master https://github.com/aa65535/openwrt-simple-obfs.git package/simple-obfs
         pushd package/luci-app-shadowsocks-rust/tools/po2lmo ; make && sudo make install ; popd
         ./scripts/feeds update -a
-        ./scripts/feeds install golang libev
+        ./scripts/feeds install golang libev libpthread libopenssl
         ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c "Local build key"
     - name: Compile
       run: |
