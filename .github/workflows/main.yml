@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         SDK_URL:
-        - https://downloads.openwrt.org/releases/21.02.1/targets/ramips/mt7621/openwrt-sdk-21.02.1-ramips-mt7621_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        - https://downloads.openwrt.org/releases/21.02.2/targets/ramips/mt7621/openwrt-sdk-21.02.2-ramips-mt7621_gcc-8.4.0_musl.Linux-x86_64.tar.xz
     steps:
     - uses: actions/checkout@master
     - name: Env for Openwrt SDK
