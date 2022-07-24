@@ -46,9 +46,6 @@ jobs:
         git clone --depth 1 -b master https://github.com/honwen/luci-app-xray.git package/luci-app-xray
         # Clash
         git clone -b master https://github.com/vernesong/OpenClash package/openclash
-        # Trojan-go
-        # git clone --depth 1 -b main https://github.com/riKirsti/trojan-go-for-openwrt.git package/trojan-go
-        # git clone --depth 1 -b master https://github.com/frainzy1477/luci-app-trojan.git package/luci-app-trojan
         # Shadowsocks
         git clone --depth 1 -b master https://github.com/honwen/luci-app-shadowsocks-rust.git package/luci-app-shadowsocks-rust
         git clone --depth 1 -b master https://github.com/honwen/openwrt-shadowsocks-rust.git package/shadowsocks-rust
