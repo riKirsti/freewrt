@@ -9,13 +9,13 @@ env:
 jobs:
   buildpkg:
     name: Build Openwrt Package
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
         SDK_URL:
-        - https://downloads.openwrt.org/releases/22.03.0-rc5/targets/ramips/mt7621/openwrt-sdk-22.03.0-rc5-ramips-mt7621_gcc-11.2.0_musl.Linux-x86_64.tar.xz
-        - https://downloads.openwrt.org/releases/22.03.0-rc5/targets/mediatek/mt7622/openwrt-sdk-22.03.0-rc5-mediatek-mt7622_gcc-11.2.0_musl.Linux-x86_64.tar.xz
+        - https://downloads.openwrt.org/releases/22.03.0-rc6/targets/ramips/mt7621/openwrt-sdk-22.03.0-rc6-ramips-mt7621_gcc-11.2.0_musl.Linux-x86_64.tar.xz
+        - https://downloads.openwrt.org/releases/22.03.0-rc6/targets/mediatek/mt7622/openwrt-sdk-22.03.0-rc6-mediatek-mt7622_gcc-11.2.0_musl.Linux-x86_64.tar.xz
     steps:
     - uses: actions/checkout@master
     - name: Env for Openwrt SDK
