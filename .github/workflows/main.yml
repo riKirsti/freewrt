@@ -14,8 +14,8 @@ jobs:
       fail-fast: false
       matrix:
         SDK_URL:
-        - https://downloads.openwrt.org/releases/22.03.0-rc6/targets/ramips/mt7621/openwrt-sdk-22.03.0-rc6-ramips-mt7621_gcc-11.2.0_musl.Linux-x86_64.tar.xz
-        - https://downloads.openwrt.org/releases/22.03.0-rc6/targets/mediatek/mt7622/openwrt-sdk-22.03.0-rc6-mediatek-mt7622_gcc-11.2.0_musl.Linux-x86_64.tar.xz
+        - https://downloads.openwrt.org/releases/21.02.3/targets/ramips/mt7621/openwrt-sdk-21.02.3-ramips-mt7621_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        - https://downloads.openwrt.org/releases/21.02.3/targets/mediatek/mt7622/openwrt-sdk-21.02.3-mediatek-mt7622_gcc-8.4.0_musl.Linux-x86_64.tar.xz
     steps:
     - uses: actions/checkout@master
     - name: Env for Openwrt SDK
@@ -48,7 +48,7 @@ jobs:
         git clone -b master https://github.com/vernesong/OpenClash package/openclash
         # Shadowsocks
         git clone --depth 1 -b master https://github.com/honwen/luci-app-shadowsocks-rust.git package/luci-app-shadowsocks-rust
-        git clone --depth 1 -b master https://github.com/honwen/openwrt-shadowsocks-rust.git package/shadowsocks-rust
+        git clone --depth 1 -b master https://github.com/riKirsti/openwrt-shadowsocks-rust.git package/shadowsocks-rust
         git clone --depth 1 -b master https://github.com/aa65535/openwrt-simple-obfs.git package/simple-obfs
         pushd package/luci-app-shadowsocks-rust/tools/po2lmo ; make && sudo make install ; popd
         ./scripts/feeds update -a
