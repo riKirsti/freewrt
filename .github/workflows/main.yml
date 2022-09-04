@@ -45,8 +45,8 @@ jobs:
         # Smartdns
         git clone --depth 1 -b master https://github.com/riKirsti/openwrt-smartdns.git package/smartdns
         # XRAY
-        git clone --depth 1 -b master https://github.com/riKirsti/openwrt-xray.git package/xray-core
-        git clone --depth 1 -b master https://github.com/honwen/luci-app-xray.git package/luci-app-xray
+        # git clone --depth 1 -b master https://github.com/riKirsti/openwrt-xray.git package/xray-core
+        # git clone --depth 1 -b master https://github.com/honwen/luci-app-xray.git package/luci-app-xray
         # Clash
         git clone --depth 1 -b master https://github.com/vernesong/OpenClash package/openclash
         # Shadowsocks
