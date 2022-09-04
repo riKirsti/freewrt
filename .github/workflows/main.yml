@@ -16,6 +16,7 @@ jobs:
         SDK_URL:
         - https://downloads.openwrt.org/releases/21.02.3/targets/ramips/mt7621/openwrt-sdk-21.02.3-ramips-mt7621_gcc-8.4.0_musl.Linux-x86_64.tar.xz
         - https://downloads.openwrt.org/releases/21.02.3/targets/mediatek/mt7622/openwrt-sdk-21.02.3-mediatek-mt7622_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        - https://downloads.openwrt.org/snapshots/targets/mediatek/filogic/openwrt-sdk-mediatek-filogic_gcc-11.3.0_musl.Linux-x86_64.tar.xz
     steps:
     - uses: actions/checkout@master
     - name: Env for Openwrt SDK
@@ -39,13 +40,15 @@ jobs:
     - name: Download Packages
       run: |
         cd ~/sdk
+        # Zerotier
+        git clone --depth 1 -b master https://github.com/mwarning/zerotier-openwrt.git package/zerotier
         # Smartdns
         git clone --depth 1 -b master https://github.com/riKirsti/openwrt-smartdns.git package/smartdns
         # XRAY
         git clone --depth 1 -b master https://github.com/riKirsti/openwrt-xray.git package/xray-core
         git clone --depth 1 -b master https://github.com/honwen/luci-app-xray.git package/luci-app-xray
         # Clash
-        git clone -b master https://github.com/vernesong/OpenClash package/openclash
+        git clone --depth 1 -b master https://github.com/vernesong/OpenClash package/openclash
         # Shadowsocks
         git clone --depth 1 -b master https://github.com/honwen/luci-app-shadowsocks-rust.git package/luci-app-shadowsocks-rust
         git clone --depth 1 -b master https://github.com/riKirsti/openwrt-shadowsocks-rust.git package/shadowsocks-rust
