@@ -69,7 +69,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         TAG=$(sed -n 's/.*targets\/\(\w*\)\/\(\w*\)\/.*/packages\/\1\/\2/p' <<< $SDK_URL)
-        cd ~/sdk/bin/packages/shadowsocks-rust/base        
+        cd ~/sdk/bin/packages/package/shadowsocks-rust/base        
         wget -O- 'https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest' | awk -F\| '/(CN\|ipv4|HK\|ipv4|TW\|ipv4|JP\|ipv4|KR\|ipv4|SG\|ipv4|MO\|ipv4)/ { printf("%s/%d\n", $4, 32-log($5)/log(2)) }' > chinaroute.txt
         # Upload base only
         cd ~/sdk/bin/packages/*/base
