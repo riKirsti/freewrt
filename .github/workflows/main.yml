@@ -3,7 +3,7 @@ on:
   push:
     branches: master
   schedule:
-  - cron: 0 6 * * 0,3
+  - cron: 0 0 * * 1,4
 env:
   UPLOAD_RELEASE: true
 jobs:
@@ -46,12 +46,12 @@ jobs:
         git clone --depth 1 -b master https://github.com/riKirsti/openwrt-smartdns.git package/smartdns
         # XRAY
         git clone --depth 1 -b master https://github.com/riKirsti/openwrt-xray.git package/xray-core
-        git clone --depth 1 -b master https://github.com/riKirsti/luci-app-xray.git package/luci-app-xray
+        git clone --depth 1 -b master https://github.com/honwen/luci-app-xray.git package/luci-app-xray
         # Clash
         git clone --depth 1 -b master https://github.com/vernesong/OpenClash package/openclash
         # Shadowsocks
         git clone --depth 1 -b master https://github.com/honwen/luci-app-shadowsocks-rust.git package/luci-app-shadowsocks-rust
-        git clone --depth 1 -b master https://github.com/riKirsti/openwrt-shadowsocks-rust.git package/shadowsocks-rust
+        git clone --depth 1 -b master https://github.com/honwen/openwrt-shadowsocks-rust.git package/shadowsocks-rust
         git clone --depth 1 -b master https://github.com/aa65535/openwrt-simple-obfs.git package/simple-obfs
         pushd package/luci-app-shadowsocks-rust/tools/po2lmo ; make && sudo make install ; popd
         ./scripts/feeds update -a
@@ -71,7 +71,13 @@ jobs:
         TAG=$(sed -n 's/.*targets\/\(\w*\)\/\(\w*\)\/.*/packages\/\1\/\2/p' <<< $SDK_URL)
         # Upload base only
         cd ~/sdk/bin/packages/*/base
-        wget -O- 'https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest' | awk -F\| '/(CN\|ipv4|HK\|ipv4|TW\|ipv4|JP\|ipv4|KR\|ipv4|SG\|ipv4|MO\|ipv4)/ { printf("%s/%d\n", $4, 32-log($5)/log(2)) }' > chinaroute.txt     
+        wget -O- 'https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest' | awk -F\| '/(CN\|ipv4|HK\|ipv4|TW\|ipv4|JP\|ipv4|KR\|ipv4|SG\|ipv4|MO\|ipv4)/ { printf("%s/%d\n", $4, 32-log($5)/log(2)) }' > chinaroute.txt
+        wget -O- 'https://raw.githubusercontent.com/cokebar/gfwlist2dnsmasq/master/gfwlist2dnsmasq.sh' > /tmp/gfwlist2dnsmasq.sh && chmod +x /tmp/gfwlist2dnsmasq.sh && sh /tmp/gfwlist2dnsmasq.sh -d 8.8.8.8 -p 53 -s xray_spec_src_fw -o xgw.txt && sed -i 's/server=/nameserver /g' xgw.txt && sed -i 's/8.8.8.8#53/gw/g' xgw.txt && sed -i 's/=/ /g' xgw.txt && rm -rf /tmp/gfwlist2dnsmasq.sh 
+        wget -O- 'https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf' > /tmp/accelerated-domains.china.conf && sed -e 's|^server=/\(.*\)/114.114.114.114$|\1|' /tmp/accelerated-domains.china.conf | egrep -v '^#' > /tmp/accelerated-domains.china.raw.txt && sed -e "s|\(.*\)|domain-rules /\1/ -c ping,tcp:80 -n cn -p xray_spec_dst_bp|" /tmp/accelerated-domains.china.raw.txt > xcn.txt && rm -f /tmp/accelerated-domains.china*
+        wget -O- 'https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf' > /tmp/apple.china.conf && sed -e 's|^server=/\(.*\)/114.114.114.114$|\1|' /tmp/apple.china.conf | egrep -v '^#' > /tmp/apple.china.txt && sed -e "s|\(.*\)|domain-rules /\1/ -c ping,tcp:80 -n cn -p xray_spec_dst_bp|" /tmp/apple.china.txt > xapcn.txt && rm -f /tmp/apple.china.*
+        wget -O- 'https://raw.githubusercontent.com/cokebar/gfwlist2dnsmasq/master/gfwlist2dnsmasq.sh' > /tmp/gfwlist2dnsmasq.sh && chmod +x /tmp/gfwlist2dnsmasq.sh && sh /tmp/gfwlist2dnsmasq.sh -d 8.8.8.8 -p 53 -s ss_spec_dst_fw -o sgw.txt&& sed -i 's/server=/nameserver /g' sgw.txt&& sed -i 's/8.8.8.8#53/gw/g' sgw.txt&& sed -i 's/=/ /g' sgw.txt&& rm -rf /tmp/gfwlist2dnsmasq.sh 
+        wget -O- 'https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf' > /tmp/accelerated-domains.china.conf && sed -e 's|^server=/\(.*\)/114.114.114.114$|\1|' /tmp/accelerated-domains.china.conf | egrep -v '^#' > /tmp/accelerated-domains.china.raw.txt && sed -e "s|\(.*\)|domain-rules /\1/ -c ping,tcp:80 -n cn -p ss_spec_dst_bp|" /tmp/accelerated-domains.china.raw.txt > scn.txt && rm -f /tmp/accelerated-domains.china*
+        wget -O- 'https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf' > /tmp/apple.china.conf && sed -e 's|^server=/\(.*\)/114.114.114.114$|\1|' /tmp/apple.china.conf | egrep -v '^#' > /tmp/apple.china.txt && sed -e "s|\(.*\)|domain-rules /\1/ -c ping,tcp:80 -n cn -p ss_spec_dst_bp|" /tmp/apple.china.txt > sapcn.txt && rm -f /tmp/apple.china.*   
         git init
         git config user.name "bot"
         git config user.email "bot@github.com"
