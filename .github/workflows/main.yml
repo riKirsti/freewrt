@@ -58,7 +58,13 @@ jobs:
         cd ~/sdk
         make defconfig
         # Edit config
-        make V=s
+        make package/zerotier/{clean,compile} V=s
+        make package/smartdns/{clean,compile} V=s
+        make package/xray-core/{clean,compile} V=s
+        make package/luci-app-xray/{clean,compile} V=s
+        make package/luci-app-shadowsocks-rust/{clean,compile} V=s
+        make package/shadowsocks-rust/{clean,compile} V=s
+        make package/simple-obfs/{clean,compile} V=s
     - name: Upload
       env:
         SDK_URL: ${{ matrix.SDK_URL }}
