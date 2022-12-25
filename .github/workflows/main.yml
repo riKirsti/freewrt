@@ -56,8 +56,6 @@ jobs:
     - name: Compile
       run: |
         cd ~/sdk
-        make defconfig
-        # Edit config
         make package/zerotier/{clean,compile} V=s
         make package/smartdns/{clean,compile} V=s
         make package/xray-core/{clean,compile} V=s
