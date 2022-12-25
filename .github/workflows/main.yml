@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         SDK_URL:
-        - https://downloads.openwrt.org/snapshots/targets/ramips/mt7621/openwrt-sdk-ramips-mt7621_gcc-11.3.0_musl.Linux-x86_64.tar.xz
+        - https://downloads.openwrt.org/releases/22.03.2/targets/ramips/mt7621/openwrt-sdk-22.03.2-ramips-mt7621_gcc-11.2.0_musl.Linux-x86_64.tar.xz
         - https://downloads.openwrt.org/snapshots/targets/mediatek/mt7622/openwrt-sdk-mediatek-mt7622_gcc-11.3.0_musl.Linux-x86_64.tar.xz
         - https://downloads.openwrt.org/snapshots/targets/mediatek/filogic/openwrt-sdk-mediatek-filogic_gcc-11.3.0_musl.Linux-x86_64.tar.xz
     steps:
