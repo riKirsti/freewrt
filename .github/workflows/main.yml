@@ -43,8 +43,9 @@ jobs:
         # XRAY
         git clone --depth 1 -b master https://github.com/riKirsti/openwrt-xray.git package/xray-core
         git clone --depth 1 -b master https://github.com/honwen/luci-app-xray.git package/luci-app-xray
-        # v2ray
-        git clone --depth 1 -b main https://github.com/riKirsti/openwrt-v2ray.git package/v2ray-core
+        # sing-box
+        git clone --depth 1 -b main https://github.com/riKirsti/open-sing.git package/sing-box
+        git clone --depth 1 -b master https://github.com/immortalwrt/homeproxy.git package/homeproxy
         # Clash
         git clone --depth 1 -b master https://github.com/vernesong/OpenClash package/openclash
         # Shadowsocks
