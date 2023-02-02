@@ -54,7 +54,7 @@ jobs:
         git clone --depth 1 -b master https://github.com/aa65535/openwrt-simple-obfs.git package/simple-obfs
         pushd package/openclash/luci-app-openclash/tools/po2lmo ; make && sudo make install ; popd
         ./scripts/feeds update -a
-        ./scripts/feeds install libev libopenssl
+        ./scripts/feeds install golang libev libopenssl
         ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c "Local build key"
     - name: Compile
       run: |
