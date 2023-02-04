@@ -25,6 +25,10 @@ jobs:
         sudo apt-get update
         sudo apt-get upgrade -y
         sudo apt-get install -y build-essential clang flex g++ gawk gcc-multilib gettext git libncurses5-dev libssl-dev python3-distutils rsync unzip zlib1g-dev file wget upx
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: '1.17.13'
     - name: Download Openwrt SDK
       env:
         SDK_URL: ${{ matrix.SDK_URL }}
@@ -33,6 +37,7 @@ jobs:
         wget $SDK_URL
         tar xf $(basename $SDK_URL) -C ~/
         mv ~/$SDK_HOME ~/sdk
+        go version
     - name: Download Packages
       run: |
         cd ~/sdk
