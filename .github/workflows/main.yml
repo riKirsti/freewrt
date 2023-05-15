@@ -15,8 +15,8 @@ jobs:
       matrix:
         SDK_URL:
         - https://downloads.openwrt.org/snapshots/targets/ramips/mt7621/openwrt-sdk-ramips-mt7621_gcc-12.2.0_musl.Linux-x86_64.tar.xz
-        - https://downloads.openwrt.org/snapshots/targets/mediatek/mt7622/openwrt-sdk-mediatek-mt7622_gcc-12.2.0_musl.Linux-x86_64.tar.xz
-        - https://downloads.openwrt.org/snapshots/targets/mediatek/filogic/openwrt-sdk-mediatek-filogic_gcc-12.2.0_musl.Linux-x86_64.tar.xz
+        - https://downloads.openwrt.org/snapshots/targets/mediatek/mt7622/openwrt-sdk-mediatek-mt7622_gcc-12.3.0_musl.Linux-x86_64.tar.xz
+        - https://downloads.openwrt.org/snapshots/targets/mediatek/filogic/openwrt-sdk-mediatek-filogic_gcc-12.3.0_musl.Linux-x86_64.tar.xz
     steps:
     - name: Env for Openwrt SDK
       run: |
@@ -43,9 +43,6 @@ jobs:
         cd ~/sdk
         # Zerotier
         # git clone --depth 1 -b master https://github.com/mwarning/zerotier-openwrt.git package/zerotier
-        # Smartdns
-        git clone --depth 1 -b master https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
-        git clone --depth 1 -b master https://github.com/pymumu/openwrt-smartdns.git package/smartdns
         # XRAY
         git clone --depth 1 -b master https://github.com/riKirsti/openwrt-xray.git package/xray-core
         git clone --depth 1 -b master https://github.com/honwen/luci-app-xray.git package/luci-app-xray
