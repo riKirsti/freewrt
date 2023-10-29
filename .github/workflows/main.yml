@@ -28,7 +28,7 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
-        go-version: '1.21.2'
+        go-version: '1.21.3'
     - name: Download Openwrt SDK
       env:
         SDK_URL: ${{ matrix.SDK_URL }}
@@ -53,7 +53,7 @@ jobs:
         git clone --depth 1 -b master https://github.com/vernesong/OpenClash package/openclash
         # Shadowsocks
         git clone --depth 1 -b master https://github.com/honwen/luci-app-shadowsocks-rust.git package/luci-app-shadowsocks-rust
-        git clone --depth 1 -b master https://github.com/honwen/openwrt-shadowsocks-rust.git package/shadowsocks-rust
+        git clone --depth 1 -b master https://github.com/riKirsti/openwrt-shadowsocks-rust.git package/shadowsocks-rust
         git clone --depth 1 -b master https://github.com/aa65535/openwrt-simple-obfs.git package/simple-obfs
         pushd package/openclash/luci-app-openclash/tools/po2lmo ; make && sudo make install ; popd
         ./scripts/feeds update -a
