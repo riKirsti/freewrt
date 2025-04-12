@@ -31,9 +31,10 @@ jobs:
       env:
         SDK_URL: ${{ matrix.SDK_URL }}
       run: |
-        SDK_HOME=$(head -c -8 <<< $(basename $SDK_URL))
+        SDK_ARCHIVE=$(basename $SDK_URL)
         wget $SDK_URL
-        tar xf $(basename $SDK_URL) -C ~/
+        tar xf $SDK_ARCHIVE -C ~/
+        SDK_HOME=$(basename $SDK_ARCHIVE .tar.zst)
         mv ~/$SDK_HOME ~/sdk
         go version
     - name: Download Packages
