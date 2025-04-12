@@ -14,9 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         SDK_URL:
-        - https://downloads.openwrt.org/snapshots/targets/ramips/mt7621/openwrt-sdk-ramips-mt7621_gcc-12.3.0_musl.Linux-x86_64.tar.xz
-        - https://downloads.openwrt.org/snapshots/targets/mediatek/mt7622/openwrt-sdk-mediatek-mt7622_gcc-12.3.0_musl.Linux-x86_64.tar.xz
-        - https://downloads.openwrt.org/snapshots/targets/mediatek/filogic/openwrt-sdk-mediatek-filogic_gcc-12.3.0_musl.Linux-x86_64.tar.xz
+        - https://downloads.openwrt.org/releases/24.10.0/targets/mediatek/filogic/openwrt-sdk-24.10.0-mediatek-filogic_gcc-13.3.0_musl.Linux-x86_64.tar.zst
     steps:
     - name: Env for Openwrt SDK
       run: |
@@ -24,18 +22,18 @@ jobs:
         sudo apt-get remove
         sudo apt-get update
         sudo apt-get upgrade -y
-        sudo apt-get install -y build-essential clang flex libev-dev bison g++ gawk gcc-multilib g++-multilib gettext git libncurses5-dev libssl-dev python3-distutils rsync unzip zlib1g-dev file wget
+        sudo apt-get install -y build-essential clang flex zstd libev-dev bison g++ gawk gcc-multilib g++-multilib gettext git libncurses5-dev libssl-dev python3-distutils rsync unzip zlib1g-dev file wget
     - name: Set up Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v5
       with:
-        go-version: '1.21.4'
+        go-version: '1.24.2'
     - name: Download Openwrt SDK
       env:
         SDK_URL: ${{ matrix.SDK_URL }}
       run: |
         SDK_HOME=$(head -c -8 <<< $(basename $SDK_URL))
         wget $SDK_URL
-        tar xf $(basename $SDK_URL) -C ~/
+        tar -xf --zstd $(basename $SDK_URL) -C ~/
         mv ~/$SDK_HOME ~/sdk
         go version
     - name: Download Packages
