@@ -80,7 +80,7 @@ jobs:
         git init
         git config user.name "bot"
         git config user.email "bot@github.com"
-        git add *.ipk
+        git add *.apk
         git add *.txt
         git commit -m "$TAG$(TZ='Asia/Shanghai' date +@%Y%m%d)"
         git push --force --quiet "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/riKirsti/freewrt.git" HEAD:$TAG
