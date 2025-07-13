@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         SDK_URL:
-        - https://downloads.openwrt.org/releases/24.10.0/targets/mediatek/filogic/openwrt-sdk-24.10.0-mediatek-filogic_gcc-13.3.0_musl.Linux-x86_64.tar.zst
+        - https://downloads.openwrt.org/snapshots/targets/mediatek/filogic/openwrt-sdk-mediatek-filogic_gcc-14.3.0_musl.Linux-x86_64.tar.zst
     steps:
     - name: Env for Openwrt SDK
       run: |
@@ -26,7 +26,7 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v5
       with:
-        go-version: '1.24.2'
+        go-version: '1.24.5'
     - name: Download Openwrt SDK
       env:
         SDK_URL: ${{ matrix.SDK_URL }}
@@ -40,8 +40,6 @@ jobs:
     - name: Download Packages
       run: |
         cd ~/sdk
-        # Zerotier
-        # git clone --depth 1 -b master https://github.com/mwarning/zerotier-openwrt.git package/zerotier
         # XRAY
         git clone --depth 1 -b master https://github.com/riKirsti/openwrt-xray.git package/xray-core
         git clone --depth 1 -b master https://github.com/honwen/luci-app-xray.git package/luci-app-xray
