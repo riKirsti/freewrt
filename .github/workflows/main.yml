@@ -43,8 +43,8 @@ jobs:
       run: |
         cd ~/sdk
         # XRAY
-        git clone --depth 1 -b master https://github.com/riKirsti/openwrt-xray.git package/xray-core
-        git clone --depth 1 -b master https://github.com/honwen/luci-app-xray.git package/luci-app-xray
+        # git clone --depth 1 -b master https://github.com/riKirsti/openwrt-xray.git package/xray-core
+        # git clone --depth 1 -b master https://github.com/honwen/luci-app-xray.git package/luci-app-xray
         # sing-box
         git clone --depth 1 -b main https://github.com/riKirsti/open-sing.git package/sing-box
         git clone --depth 1 -b master https://github.com/immortalwrt/homeproxy.git package/homeproxy
