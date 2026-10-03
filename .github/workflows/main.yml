@@ -2,8 +2,6 @@ name: Openwrt Build Bot
 on:
   push:
     branches: master
-  schedule:
-  - cron: 0 0 * * 1,3,5
 env:
   UPLOAD_RELEASE: true
 jobs:
